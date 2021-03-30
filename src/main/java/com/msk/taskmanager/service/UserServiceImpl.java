@@ -2,6 +2,7 @@ package com.msk.taskmanager.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,10 @@ public class UserServiceImpl implements UserService {
         Role adminRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new ArrayList<>(Collections.singletonList(adminRole)));
         return userRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }
