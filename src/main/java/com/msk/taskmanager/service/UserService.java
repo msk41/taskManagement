@@ -11,4 +11,6 @@ public interface UserService {
     User changeRoleToAdmin(User user);
 
     List<User> findAll();
+
+    User getUserByEmail(String email);
 }
