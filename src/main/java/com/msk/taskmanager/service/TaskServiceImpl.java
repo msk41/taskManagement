@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.msk.taskmanager.model.Task;
+import com.msk.taskmanager.model.User;
 import com.msk.taskmanager.repository.TaskRepository;
 
 @Service
@@ -26,5 +27,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> findAll() {
         return taskRepository.findAll();
+    }
+
+    @Override
+    public List<Task> findByOwnerOrderByDateDesc(User user) {
+        return taskRepository.findByOwnerOrderByDateDesc(user);
     }
 }
