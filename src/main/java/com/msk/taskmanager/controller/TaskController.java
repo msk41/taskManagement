@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.msk.taskmanager.model.Task;
@@ -50,6 +51,18 @@ public class TaskController {
         }
         taskService.createTask(task);
 
+        return "redirect:/tasks";
+    }
+
+    @GetMapping("task/markDone/{id}")
+    public String setTaskCompleted(@PathVariable Long id) {
+        taskService.setTaskCompleted(id);
+        return "redirect:/tasks";
+    }
+
+    @GetMapping("task/markUndone/{id}")
+    public String setTaskNotCompleted(@PathVariable Long id) {
+        taskService.setTaskNotCompleted(id);
         return "redirect:/tasks";
     }
 }

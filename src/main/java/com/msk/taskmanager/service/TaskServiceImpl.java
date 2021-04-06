@@ -33,4 +33,19 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> findByOwnerOrderByDateDesc(User user) {
         return taskRepository.findByOwnerOrderByDateDesc(user);
     }
+
+    @Override
+    public void setTaskCompleted(Long id) {
+        Task task = taskRepository.getOne(id);
+        task.setCompleted(true);
+        taskRepository.save(task);
+    }
+
+    @Override
+    public void setTaskNotCompleted(Long id) {
+        Task task = taskRepository.getOne(id);
+        task.setCompleted(false);
+        taskRepository.save(task);
+    }
+
 }
