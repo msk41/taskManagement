@@ -1,6 +1,7 @@
 package com.msk.taskmanager.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,6 +43,18 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
+
+    public List<Task> getTasksCompleted() {
+        return tasksOwned.stream()
+                .filter(Task::isCompleted)
+                .collect(Collectors.toList());
+    }
+
+    public List<Task> getTasksInProgress() {
+        return tasksOwned.stream()
+                .filter(task -> !task.isCompleted())
+                .collect(Collectors.toList());
+    }
 
     public User() {
     }
