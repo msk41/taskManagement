@@ -1,6 +1,7 @@
 package com.msk.taskmanager.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,32 @@ public class TaskServiceImpl implements TaskService {
     public void setTaskNotCompleted(Long id) {
         Task task = taskRepository.getOne(id);
         task.setCompleted(false);
+        taskRepository.save(task);
+    }
+
+    @Override
+    public List<Task> findFreeTasks() {
+        return taskRepository.findAll()
+                .stream()
+                .filter(task -> task.getOwner() == null)
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void assignTaskToUser(Task task, User user) {
+        task.setOwner(user);
+        taskRepository.save(task);
+    }
+
+    @Override
+    public void unassignTask(Task task) {
+        task.setOwner(null);
         taskRepository.save(task);
     }
 
