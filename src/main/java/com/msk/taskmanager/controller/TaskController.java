@@ -69,6 +69,12 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
+    @GetMapping("task/delete/{id}")
+    public String deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
+        return "redirect:/tasks";
+    }
+
     @GetMapping("task/markDone/{id}")
     public String setTaskCompleted(@PathVariable Long id) {
         taskService.setTaskCompleted(id);
