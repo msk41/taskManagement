@@ -1,6 +1,7 @@
 package com.msk.taskmanager.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,6 +37,10 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "OWNER_ID")
     private User owner;
+
+    public long daysLeftUntilDeadline(LocalDate date) {
+        return ChronoUnit.DAYS.between(LocalDate.now(), date);
+    }
 
     public Task() {
     }

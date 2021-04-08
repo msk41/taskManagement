@@ -80,6 +80,7 @@
                             <thead class="table-info">
                             <tr>
                                 <th>Task name</th>
+                                <th>Days left</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -90,6 +91,11 @@
 
                                 <!--Task in progress name-->
                                 <td th:text="${t.name}"></td>
+
+                                <!--Days left-->
+                                <td class="text-center">
+                                    <!--/*/ <th:block th:include="fragments/showDaysLeftUntilDeadline :: daysLeft(${t})"></th:block> /*/-->
+                                </td>
 
                                 <!--Unassign button-->
                                 <td>
@@ -122,6 +128,7 @@
                             <thead class="table-secondary">
                             <tr>
                                 <th>Task name</th>
+                                <th>Days left</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -132,6 +139,11 @@
 
                                 <!--Free task name-->
                                 <td th:text="${ft.name}"></td>
+
+                                <!--Days left-->
+                                <td class="text-center">
+                                    <!--/*/ <th:block th:include="fragments/showDaysLeftUntilDeadline :: daysLeft(${ft})"></th:block> /*/-->
+                                </td>
 
                                 <!--Assign button-->
                                 <td>
