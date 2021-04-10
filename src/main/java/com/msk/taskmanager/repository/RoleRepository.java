@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.msk.taskmanager.model.Role;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer>{
+public interface RoleRepository extends JpaRepository<Role, Integer> {
 
     Role findByRole(String role);
 }

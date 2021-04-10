@@ -40,8 +40,8 @@ public class User {
     private List<Task> tasksOwned;
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+               joinColumns = @JoinColumn(name = "user_id"),
+               inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
     public List<Task> getTasksCompleted() {
@@ -60,9 +60,9 @@ public class User {
     }
 
     public User(@Email @NotEmpty String email,
-            @NotEmpty String name,
-            @NotEmpty @Length(min = 5) String password,
-            String photo) {
+                @NotEmpty String name,
+                @NotEmpty @Length(min = 5) String password,
+                String photo) {
         this.email = email;
         this.name = name;
         this.password = password;

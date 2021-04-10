@@ -55,7 +55,7 @@ public class TaskController {
     }
 
     @GetMapping("task/edit/{id}")
-    public String showFilledTaskForm(@PathVariable Long id,  Model model) {
+    public String showFilledTaskForm(@PathVariable Long id, Model model) {
         model.addAttribute("task", taskService.getTaskById(id));
         return "views/filledTaskForm";
     }

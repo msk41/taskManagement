@@ -57,8 +57,12 @@ public class Task {
         this.creatorName = creatorName;
     }
 
-    public Task(@NotEmpty String name, @NotEmpty @Size(max = 1200) String description, @NotNull LocalDate date,
-            boolean isCompleted, String creatorName, User owner) {
+    public Task(@NotEmpty String name,
+                @NotEmpty @Size(max = 1200) String description,
+                @NotNull LocalDate date,
+                boolean isCompleted,
+                String creatorName,
+                User owner) {
         this.name = name;
         this.description = description;
         this.date = date;
