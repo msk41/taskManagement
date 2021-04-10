@@ -1,8 +1,11 @@
 package com.msk.taskmanager.controller;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,9 +31,15 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    public String listTasks(Model model) {
+    public String listTasks(Model model, Principal principal, SecurityContextHolderAwareRequestWrapper request) {
+        String email = principal.getName();
+        User signedUser = userService.getUserByEmail(email);
+        boolean isAdmin = request.isUserInRole("ROLE_ADMIN");
 
         model.addAttribute("tasks", taskService.findAll());
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("signedUser", signedUser);
+        model.addAttribute("isAdmin", isAdmin);
         return "views/tasksList";
     }
 
