@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,15 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     private final Logger logger = LoggerFactory.getLogger(InitialDataLoader.class);
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
+    @Value("${default.admin.mail}")
+    private String defaultAdminMail;
+    @Value("${default.admin.name}")
+    private String defaultAdminName;
+    @Value("${default.admin.password}")
+    private String defaultAdminPassword;
+    @Value("${default.admin.image}")
+    private String defaultAdminImage;
+
     @Autowired
     public InitialDataLoader(UserService userService, TaskService taskService, RoleService roleService) {
         this.userService = userService;
@@ -45,10 +55,10 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         // USERS ---------------------------------------------------------------
         // 1
         User admin = new User(
-                "admin@mail.com",
-                "admin",
-                "112233",
-                "images/user.png");
+                defaultAdminMail,
+                defaultAdminName,
+                defaultAdminPassword,
+                defaultAdminImage);
         userService.createUser(admin);
         userService.changeRoleToAdmin(admin);
 
