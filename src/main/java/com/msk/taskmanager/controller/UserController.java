@@ -1,9 +1,11 @@
 package com.msk.taskmanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.msk.taskmanager.service.UserService;
 
@@ -18,8 +20,18 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String listUsers(Model model) {
+    public String listUsers(Model model, SecurityContextHolderAwareRequestWrapper request) {
+        boolean isAdminSigned = request.isUserInRole("ROLE_ADMIN");
+
         model.addAttribute("users", userService.findAll());
+        model.addAttribute("isAdminSigned", isAdminSigned);
         return "views/usersList";
     }
+
+    @GetMapping("user/delete/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return "redirect:/users";
+    }
+
 }

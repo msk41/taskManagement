@@ -64,4 +64,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public void deleteUser(Long id) {
+        User user = userRepository.getOne(id);
+        user.getTasksOwned().forEach(task -> task.setOwner(null));
+        userRepository.delete(user);
+    }
+
 }

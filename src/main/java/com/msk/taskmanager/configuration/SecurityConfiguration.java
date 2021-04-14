@@ -23,10 +23,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.
-                jdbcAuthentication()
-                .usersByUsernameQuery("select email as principal, password as credentials, true from user where email=?")
-                .authoritiesByUsernameQuery("select u.email as principal, r.role as role from user u inner join user_role ur on(u.user_id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.email=?")
+        auth.jdbcAuthentication()
+                .usersByUsernameQuery(
+                        "select email as principal, password as credentials, true from user where email=?")
+                .authoritiesByUsernameQuery(
+                        "select u.email as principal, r.role as role from user u inner join user_role ur on(u.user_id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.email=?")
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder)
                 .rolePrefix("ROLE_");
@@ -34,12 +35,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/register", "/", "/login", "/about", "/css/**", "/webjars/**")
                 .permitAll()
 
-                .antMatchers("/profile", "/tasks/**", "/task/**", "/users")
+                .antMatchers("/profile", "/tasks/**", "/task/**", "/users", "/user/**")
                 .hasAnyRole("USER, ADMIN")
 
                 .antMatchers("/assign")
@@ -58,4 +58,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
+
 }
