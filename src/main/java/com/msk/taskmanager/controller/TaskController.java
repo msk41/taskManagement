@@ -34,27 +34,27 @@ public class TaskController {
     public String listTasks(Model model, Principal principal, SecurityContextHolderAwareRequestWrapper request) {
         String email = principal.getName();
         User signedUser = userService.getUserByEmail(email);
-        boolean isAdmin = request.isUserInRole("ROLE_ADMIN");
+        boolean isAdminSigned = request.isUserInRole("ROLE_ADMIN");
 
         model.addAttribute("tasks", taskService.findAll());
         model.addAttribute("users", userService.findAll());
         model.addAttribute("signedUser", signedUser);
-        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("isAdminSigned", isAdminSigned);
         model.addAttribute("onlyInProgress", false);
         return "views/tasksList";
     }
 
     @GetMapping("/tasks/inProgress")
     public String listTasksInProgress(Model model, Principal principal,
-            SecurityContextHolderAwareRequestWrapper request) {
+                                      SecurityContextHolderAwareRequestWrapper request) {
         String email = principal.getName();
         User signedUser = userService.getUserByEmail(email);
-        boolean isAdmin = request.isUserInRole("ROLE_ADMIN");
+        boolean isAdminSigned = request.isUserInRole("ROLE_ADMIN");
 
         model.addAttribute("tasks", taskService.findAll());
         model.addAttribute("users", userService.findAll());
         model.addAttribute("signedUser", signedUser);
-        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("isAdminSigned", isAdminSigned);
         model.addAttribute("onlyInProgress", true);
         return "views/tasksList";
     }
