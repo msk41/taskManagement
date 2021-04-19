@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register", "/", "/login", "/about", "/css/**", "/webjars/**")
                 .permitAll()
 
-                .antMatchers("/profile", "/tasks/**", "/task/**", "/users", "/user/**")
+                .antMatchers("/profile", "/tasks/**", "/task/**", "/users", "/user/**", "/h2-console/**")
                 .hasAnyRole("USER, ADMIN")
 
                 .antMatchers("/assign")
@@ -55,8 +55,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/login");
 
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+        http.csrf().ignoringAntMatchers("/h2-console/**");
+        http.headers().frameOptions().sameOrigin();
     }
 
 }
