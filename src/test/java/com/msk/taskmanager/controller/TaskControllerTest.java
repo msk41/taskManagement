@@ -33,7 +33,7 @@ public class TaskControllerTest {
     @Before
     @WithMockUser(username = "admin", authorities = { "ADMIN" })
     public void setup() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(taskController).build();
     }
 

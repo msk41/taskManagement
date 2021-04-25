@@ -1,7 +1,7 @@
 package com.msk.taskmanager.controller;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,15 +30,14 @@ public class RegisterControllerTest {
 
     @Before
     public void setup() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(registerController).build();
     }
 
     @Test
     public void showRegisterForm_shouldReturnStatusOkAndRegisterFormAsViewNameAndUserAsAttribute() throws Exception {
-        Long id = 1L;
 
-        verifyZeroInteractions(userServiceMock);
+        verifyNoInteractions(userServiceMock);
 
         mockMvc.perform(get("/register"))
                 .andExpect(status().isOk())
