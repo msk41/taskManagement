@@ -37,7 +37,7 @@ public class TaskController {
         return "views/tasksList";
     }
 
-    @GetMapping("/tasks/inProgress")
+    @GetMapping("/tasks/in-progress")
     public String listTasksInProgress(Model model, Principal principal,
                                       SecurityContextHolderAwareRequestWrapper request) {
         prepareTasksListModel(model, principal, request);
@@ -58,7 +58,7 @@ public class TaskController {
 
     }
 
-    @GetMapping("task/create")
+    @GetMapping("/task/create")
     public String showEmptyTaskForm(Model model, Principal principal,
                                     SecurityContextHolderAwareRequestWrapper request) {
         String email = principal.getName();
@@ -73,7 +73,7 @@ public class TaskController {
         return "views/emptyTaskForm";
     }
 
-    @PostMapping("task/create")
+    @PostMapping("/task/create")
     public String createTask(@Valid Task task, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "views/emptyTaskForm";
@@ -83,13 +83,13 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
-    @GetMapping("task/edit/{id}")
+    @GetMapping("/task/edit/{id}")
     public String showFilledTaskForm(@PathVariable Long id, Model model) {
         model.addAttribute("task", taskService.getTaskById(id));
         return "views/filledTaskForm";
     }
 
-    @PostMapping("task/edit/{id}")
+    @PostMapping("/task/edit/{id}")
     public String updateTask(@Valid Task task, BindingResult bindingResult, @PathVariable Long id, Model model) {
         if (bindingResult.hasErrors()) {
             return "views/filledTaskForm";
@@ -98,19 +98,19 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
-    @GetMapping("task/delete/{id}")
+    @GetMapping("/task/delete/{id}")
     public String deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return "redirect:/tasks";
     }
 
-    @GetMapping("task/markDone/{id}")
+    @GetMapping("/task/mark-done/{id}")
     public String setTaskCompleted(@PathVariable Long id) {
         taskService.setTaskCompleted(id);
         return "redirect:/tasks";
     }
 
-    @GetMapping("task/markUndone/{id}")
+    @GetMapping("/task/unmark-done/{id}")
     public String setTaskNotCompleted(@PathVariable Long id) {
         taskService.setTaskNotCompleted(id);
         return "redirect:/tasks";
