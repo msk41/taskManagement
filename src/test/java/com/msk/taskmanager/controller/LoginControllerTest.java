@@ -23,7 +23,7 @@ public class LoginControllerTest {
     public void showLoginForm_shouldReturnStatusOkAndLoginFormAsViewName() throws Exception {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("views/loginForm"));
+                .andExpect(view().name("forms/login"));
     }
 
 }

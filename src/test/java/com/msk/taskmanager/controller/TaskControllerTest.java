@@ -45,7 +45,7 @@ public class TaskControllerTest {
 
         mockMvc.perform(get("/task/edit/1"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("views/filledTaskForm"))
+                .andExpect(view().name("forms/task-edit"))
                 .andExpect(model().attribute("task", instanceOf(Task.class)));
     }
 

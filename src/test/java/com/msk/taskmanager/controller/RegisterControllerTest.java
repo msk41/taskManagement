@@ -41,7 +41,7 @@ public class RegisterControllerTest {
 
         mockMvc.perform(get("/register"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("views/registerForm"))
+                .andExpect(view().name("forms/register"))
                 .andExpect(model().attribute("user", instanceOf(User.class)));
     }
 
