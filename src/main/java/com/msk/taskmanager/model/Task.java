@@ -23,13 +23,13 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "{task.name.not.empty}")
     private String name;
-    @NotEmpty
+    @NotEmpty(message = "{task.description.not.empty}")
     @Column(length = 1200)
-    @Size(max = 1200)
+    @Size(max = 1200, message = "{task.description.size}")
     private String description;
-    @NotNull
+    @NotNull(message = "{task.date.not.null}")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private boolean isCompleted;
