@@ -1,6 +1,7 @@
 package com.msk.taskmanager.model;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -142,6 +143,26 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        User other = (User) obj;
+        return Objects.equals(id, other.id) &&
+                email.equals(other.email) &&
+                name.equals(other.name) &&
+                password.equals(other.password) &&
+                Objects.equals(photo, other.photo) &&
+                Objects.equals(tasksOwned, other.tasksOwned) &&
+                Objects.equals(roles, other.roles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, name, password, photo, tasksOwned, roles);
     }
 
 }

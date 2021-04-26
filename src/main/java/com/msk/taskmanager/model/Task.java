@@ -2,6 +2,7 @@ package com.msk.taskmanager.model;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -125,6 +126,26 @@ public class Task {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Task other = (Task) obj;
+        return isCompleted == other.isCompleted &&
+                Objects.equals(id, other.id) &&
+                name.equals(other.name) &&
+                description.equals(other.description) &&
+                date.equals(other.date) &&
+                Objects.equals(creatorName, other.creatorName) &&
+                Objects.equals(owner, other.owner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, date, isCompleted, creatorName, owner);
     }
 
 }

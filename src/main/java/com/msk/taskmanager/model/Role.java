@@ -1,6 +1,7 @@
 package com.msk.taskmanager.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,6 +56,23 @@ public class Role {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Role other = (Role) obj;
+        return Objects.equals(id, other.id) &&
+                Objects.equals(role, other.role) &&
+                Objects.equals(users, other.users);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, role, users);
     }
 
 }
