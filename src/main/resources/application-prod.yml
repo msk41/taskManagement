@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://docker-mysql:3306/taskManager_prod
+    username: prod_user
+    password: prod_user
