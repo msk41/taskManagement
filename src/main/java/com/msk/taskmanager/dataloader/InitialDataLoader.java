@@ -1,7 +1,6 @@
 package com.msk.taskmanager.dataloader;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +25,6 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     private RoleService roleService;
 
     private final Logger logger = LoggerFactory.getLogger(InitialDataLoader.class);
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Value("${default.admin.mail}")
     private String defaultAdminMail;
@@ -47,12 +45,30 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        // ROLES ---------------------------------------------------------------
+        // ROLES
+        if (roleService.getRoleCount() == 0L) {
+            loadRoles();
+        }
+
+        // USERS
+        if (userService.getUserCount() == 0L) {
+            loadUsers();
+        }
+
+        // TASKS
+        if (taskService.getTaskCount() == 0L) {
+            loadTasks();
+        }
+
+    }
+
+    private void loadRoles() {
         roleService.createRole(new Role("ADMIN"));
         roleService.createRole(new Role("USER"));
         roleService.findAll().stream().map(role -> "saved role: " + role.getRole()).forEach(logger::info);
+    }
 
-        // USERS ---------------------------------------------------------------
+    private void loadUsers() {
         // 1
         User admin = new User(
                 defaultAdminMail,
@@ -109,13 +125,14 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         userService.findAll().stream()
                 .map(u -> "saved user: " + u.getName())
                 .forEach(logger::info);
+    }
 
-        // TASKS ---------------------------------------------------------------
-        // tasks from Web Design Checklist
-        // https://www.beewits.com/the-ultimate-web-design-checklist-things-to-do-when-launching-a-website/
+    private void loadTasks() {
 
         LocalDate today = LocalDate.now();
 
+        // tasks from Web Design Checklist
+        // https://www.beewits.com/the-ultimate-web-design-checklist-things-to-do-when-launching-a-website/
         // 1
         taskService.createTask(new Task(
                 "Collect briefing document ",
@@ -291,11 +308,6 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 userService.getUserByEmail("manager@mail.com").getName()));
 
         taskService.findAll().stream().map(t -> "saved task: " + t.getName()).forEach(logger::info);
-
-    }
-
-    private String getOwnerNameOrNoOwner(Task task) {
-        return task.getOwner() == null ? "no owner" : task.getOwner().getName();
     }
 
 }
