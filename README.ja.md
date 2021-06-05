@@ -1,6 +1,8 @@
 # タスク管理アプリ
 チームでのタスク管理ができるアプリ
 
+![Image of Task Management App](src/main/resources/static/images/taskManager.png)
+
 ## 特徴
 各ユーザーは以下の操作が可能
 
@@ -21,7 +23,38 @@
 ## 開発環境
 * Java 8（jdk1.8.0_171）
 * Spring Boot 2.4.3
-* H2 database
+* MySQL 8.0.25
 * Maven 3.6.3
 * Bootstrap 4.2.1
 * jQuery 3.3.1-1
+* Docker 20.10.6
+* Docker Compose 1.29.1
+
+## アプリ実行方法
+プロジェクトをビルド（プロファイルを指定）
+
+```
+mvn clean install -Dspring.profiles.active=dev -DskipTests
+```
+
+Docker Composeを使用してアプリを実行（プロファイルを指定）
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+
+
+コンテナ上でアプリ起動後、ブラウザで[http://localhost:8080](http://localhost:8080)を開く。<br/>
+ログインするには、下記のEmail、Passwordを使用するか、もしくはログイン画面下のデモユーザーボタンを押下する。
+
+Email             | Password
+----------------- | -------------
+manager@mail.com  | 112233
+ann@mail.com      | 112233
+mark@mail.com     | 112233
+
+コンテナを停止する場合、`docker-compose down`を使用する
+
+```
+docker-compose down
+```
