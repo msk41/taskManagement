@@ -19,9 +19,9 @@ spring:
 # admin property
 default:
     admin:
-        image: images/user.png
+        image: images/admin.png
         mail: admin@mail.com
-        name: admin
+        name: Admin
         password: 112233
 
 logging:

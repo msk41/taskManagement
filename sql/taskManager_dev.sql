@@ -64,13 +64,13 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`user_id`, `name`, `email`, `password`, `photo`)
 VALUES
-  (1,'admin','admin@mail.com','$2a$10$8V7YOPxJEa3Q7OZ9fEBeauh/xr6RiM0.A4NiP/4yB09rfyapYV1cu','images/user.png'),
-  (2,'Manager','manager@mail.com','$2a$10$QvKm9VkSATgNPdD6JvIp1.4Y7jNrDY6T.FT3bqKeZJI733R7DI3my','images/user.png'),
-  (3,'Mark','mark@mail.com','$2a$10$XdJlpE.Mo6yh.dyzZlPqEeIBGNJr8xXOacqqmKqqpK5lm78xvuRz2','images/user.png'),
-  (4,'Ann','ann@mail.com','$2a$10$GKYVKRlYM0ulHSgZa3KqP.9vmFLG84YwSeHD5tOHmkQusWFbHgNeW','images/user.png'),
-  (5,'Ralf','ralf@mail.com','$2a$10$HRL196NRMilwYleCaXrij.LDMRb//E5GFzNCxRV1WbaCKZvixedoO','images/user.png'),
-  (6,'Kate','kate@mail.com','$2a$10$1vQBrI5Iq46Q4OBG29UpTOy553a4GUBb6NSsC2a3LBYYEgb8GnTXK','images/user.png'),
-  (7,'Tom','tom@mail.com','$2a$10$RwuTFdg9SmAsvgal3QBm1OfAJb.LVOHplaR4ZuwhpV8UctPd6dTqa','images/user.png');
+  (1,'Admin','admin@mail.com','$2a$10$8V7YOPxJEa3Q7OZ9fEBeauh/xr6RiM0.A4NiP/4yB09rfyapYV1cu','images/admin.png'),
+  (2,'Manager','manager@mail.com','$2a$10$QvKm9VkSATgNPdD6JvIp1.4Y7jNrDY6T.FT3bqKeZJI733R7DI3my','images/admin.png'),
+  (3,'Mark','mark@mail.com','$2a$10$XdJlpE.Mo6yh.dyzZlPqEeIBGNJr8xXOacqqmKqqpK5lm78xvuRz2','images/mark.jpg'),
+  (4,'Ann','ann@mail.com','$2a$10$GKYVKRlYM0ulHSgZa3KqP.9vmFLG84YwSeHD5tOHmkQusWFbHgNeW','images/ann.jpg'),
+  (5,'Ralf','ralf@mail.com','$2a$10$HRL196NRMilwYleCaXrij.LDMRb//E5GFzNCxRV1WbaCKZvixedoO','images/ralf.jpg'),
+  (6,'Kate','kate@mail.com','$2a$10$1vQBrI5Iq46Q4OBG29UpTOy553a4GUBb6NSsC2a3LBYYEgb8GnTXK','images/kate.jpg'),
+  (7,'Tom','tom@mail.com','$2a$10$RwuTFdg9SmAsvgal3QBm1OfAJb.LVOHplaR4ZuwhpV8UctPd6dTqa','images/tom.jpg');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
