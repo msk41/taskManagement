@@ -27,4 +27,10 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> findAll() {
         return roleRepository.findAll();
     }
+
+    @Override
+    public long getRoleCount() {
+        return roleRepository.count();
+    }
+
 }

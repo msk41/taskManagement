@@ -1,0 +1,12 @@
+version: '3'
+services:
+  docker-mysql:
+    environment:
+      MYSQL_DATABASE: taskManager_dev
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_user
+
+  app:
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    command: -Dspring.profiles.active=dev

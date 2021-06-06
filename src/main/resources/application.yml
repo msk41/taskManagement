@@ -1,0 +1,35 @@
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/taskManager_dev
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: dev_user
+        password: dev_user
+        platform: mysql
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        database: mysql
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
+                use_sql_comments: true
+
+# admin property
+default:
+    admin:
+        image: images/admin.png
+        mail: admin@mail.com
+        name: Admin
+        password: 112233
+
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: DEBUG
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: TRACE

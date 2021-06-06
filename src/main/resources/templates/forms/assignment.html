@@ -25,7 +25,7 @@
             <h2 class="my-second-header">Choose user</h2>
 
             <div class="card-deck">
-                <div th:each="user:${users}" class="col-12 col-sm-3">
+                <div th:each="user:${users}" class="col-12 col-sm-3 px-0">
 
                     <a th:href="${'/assignment/' + user.id}" class="btn text-left">
 
@@ -35,17 +35,14 @@
                             <div class="row">
 
                                 <div class="col-4">
-                                    <img class="card-img-left embed-responsive embed-responsive-3by4 mt-2 ml-2"
+                                    <img class="card-img-left embed-responsive embed-responsive-3by4"
                                          th:src="${user.photo}" alt="user photo">
                                 </div>
 
                                 <div class="col-8">
                                     <div th:text="${user.name}"></div>
                                     <small>tasks in progress:</small>
-                                    <div th:if="${user.getTasksInProgress().size() gt 0}"
-                                         th:text="${user.getTasksInProgress().size()}">
-                                    </div>
-                                    <div th:if="${user.getTasksInProgress().size()==0}">0</div>
+                                    <div th:text="${user.getTasksInProgress().size()}"></div>
                                 </div>
 
                             </div>
