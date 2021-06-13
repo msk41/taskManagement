@@ -52,16 +52,7 @@
                 </div>
             </div>
 
-            <hr class="my-4">
-
-            <h2 class="my-second-header" th:if="${selectedUser==null}">No user is selected</h2>
-            <h2 class="my-second-header" th:unless="${selectedUser==null}">
-                <span class="text-success"
-                      th:text="${selectedUser.getName() +' is selected'}">
-                </span>
-            </h2>
-
-            <hr class="my-4">
+            <hr class="my-4" th:if="${selectedUser!=null}">
 
             <!--section active only if user is selected-->
             <div class="row" th:if="${selectedUser!=null}">

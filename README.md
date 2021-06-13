@@ -1,29 +1,21 @@
 # Task Management App
-Application for a team or a small company to manage tasks
+Application for a team to manage tasks
 
 Read this in other languages: [日本語](README.ja.md)
 
-![Image of Task Management App](src/main/resources/static/images/taskManager.png)
-
 ## Features
-Most features require logging in.<br/>
-Not authorized users have access to the welcome, login, and registration page.
 
-**Admin (manager) can:**
+**Admin**
 -   Create task and assign task to any user
--   View list of all users with possibility to delete user
--   View list of all tasks with editing or deleting task
--   Switch task as completed/uncompleted
+-   View list of all users and delete user
+-   View list of all tasks, edit and delete task
+-   Switch task completed/uncompleted
 
-**Common user (employee) can:**
+**Common user**
 -   Create task only for himself
--   View list of all users with no action allowed
--   View list of all tasks with editing or deleting only tasks for which he is responsible
--   Switch owned task as completed/uncompleted
-
-**Every authorized user can:**
--   View his own profile
-
+-   View list of all users
+-   View list of all tasks, edit and delete only tasks that he is responsible for
+-   Switch owned task completed/uncompleted
 
 ## Development Environment
 * Java 8（jdk1.8.0_171）
