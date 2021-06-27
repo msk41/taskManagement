@@ -3,7 +3,7 @@
       lang="en">
 <head>
     <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
-    <title>Task Manager</title>
+    <title>Task Management</title>
 </head>
 
 <body>
@@ -12,38 +12,26 @@
 </header>
 
 <main class="container">
-    <h1 class="display-4">Welcome to Task Manager</h1>
-    <p class="lead">This application will help you get stuff done</p>
+    <h1 class="display-4">Task Management App</h1>
+    <p class="lead">Application for a team to manage tasks</p>
 
     <hr class="my-4">
-    <p>Most features require logging in. Not authorized users have access to the welcome, login, and registration page.</p>
-
-    <p>Admin (manager) can:</p>
+    <h2 class="my-second-header">Features</h2>
+    <p>Admin</p>
     <ul>
         <li>Create task and assign task to any user</li>
-        <li>View list of all users with possibility to delete user</li>
-        <li>View list of all tasks with editing or deleting task</li>
-        <li>Switch task as completed/uncompleted</li>
+        <li>View list of all users and delete user</li>
+        <li>View list of all tasks, edit and delete task</li>
+        <li>Switch task completed/uncompleted</li>
     </ul>
-        <p>Common user (employee) can:</p>
+    <p>Common user</p>
     <ul>
         <li>Create task only for himself</li>
-        <li>View list of all users with no action allowed</li>
-        <li>View list of all tasks with editing or deleting only tasks for which he is responsible</li>
-        <li>Switch owned task as completed/uncompleted</li>
+        <li>View list of all users</li>
+        <li>View list of all tasks, edit and delete only tasks that he is responsible for</li>
+        <li>Switch owned task completed/uncompleted</li>
     </ul>
 
-    <p>Every authorized user can:</p>
-    <ul>
-        <li>View his own profile</li>
-    </ul>
-
-    <h2 class="my-second-header">Test users:</h2>
-    <ul>
-        <li>manager@mail.com, password: 112233</li>
-        <li>ann@mail.com, password: 112233</li>
-        <li>mark@mail.com, password: 112233</li>
-    </ul>
 </main>
 
 <footer class="footer">
